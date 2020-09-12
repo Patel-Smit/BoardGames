@@ -1,0 +1,264 @@
+/*
+You can run this code at : http://codeboot.org
+*/
+
+print("Welcome to connect-four");
+var board = [["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]];
+
+function grid (){
+    var line = "";
+    var rowNumber = 6;
+    for(var xi=0; xi<board.length; xi++){
+        for(var xj=0; xj<board[xi].length; xj++){
+            if(board[xi][xj] ==0){
+                board[xi][xj] = " ";
+            }
+            line+=board[xi][xj] + "|";
+        }
+        if (rowNumber > 0){
+            print(rowNumber + "|" + line);
+            rowNumber--;}
+        line = "";
+    }
+    print("  - - - - - - -");
+    print("  1 2 3 4 5 6 7");
+
+}
+
+function gridIsFull(){
+    for(var i=1; i<=6; ++i){
+        if(board[0][i] == " ")
+            return false;
+    }
+    alert("This game is a draw!");
+    return true;
+}
+
+function humanTurn(){
+    do{
+        var column = parseInt(prompt("Select a column for your move!")-1);
+        
+        while(column < 0 || column > 6 || isNaN(column)== true  )
+            column = parseInt(prompt("You must select a number from 1 to 7!\nEnter the column number to place your disc:"));
+
+        if (board[0][column] != " ")
+            alert("The column " + (column+1) + " has no more spots available.\nEnter a column to place your disc:");
+
+    }while(board[0][column] != " ");
+
+    for(var i=5;i>=0;--i){
+        if(board[i][column] == " "){
+            board[i][column] = "B";
+            break;
+        }
+    }
+    grid (board);
+    print("The player placed the disc in the column " + (column+1) + "!");
+}
+
+function computerTurn(){
+    do{
+        var random = Math.floor(Math.random()  * 6) + 1;
+
+    }while(board[0][random] != " ");
+
+    for(var i=5;i>=0;--i){
+        if(board[i][random] == " "){
+            board[i][random] = "G";
+            break;
+        }
+    }
+    grid (board);
+    print("The computer placed the disc at the column " + (random+1));
+}
+
+function rowCheck(){
+    var countPlayer=0;
+    var countComputer=0;
+    var row = 1;
+    for(var i=5;i>=0;--i){
+        for(var j=0;j<=6; ++j){
+            if(board[i][j].indexOf("B") >= 0){
+                ++countPlayer;
+                countComputer = 0;
+                if(countPlayer == 4){
+                    alert("The player wins in the row " + row + "☺");
+                    return true;
+                }
+            }
+            else if(board[i][j].indexOf("G") >= 0){
+                ++countComputer;
+                countPlayer = 0;
+                if(countComputer == 4){
+                    alert("The computer wins in the row " + row + "☹");
+                    return true;
+                }
+            }
+            else{
+                countComputer = 0;
+                countPlayer = 0;
+            }
+        }
+        countComputer = 0;
+        countPlayer = 0;
+        ++row;
+    }
+    return false;
+}
+
+function columnCheck(){
+    var countPlayer=0;
+    var countComputer=0;
+    for(var i=0; i<=6; ++i){
+        for(var j=5; j>=0; --j){
+            if(board[j][i] == "B"){
+                ++countPlayer;
+                countComputer = 0;
+                if(countPlayer == 4){
+                    alert("The player wins in the column " + (i+1) + "☺");
+                    return true;
+                }
+            }
+            else if(board[j][i] == "G"){
+                ++countComputer;
+                countPlayer = 0;
+                if(countComputer == 4){
+                    alert("The computer wins in the column " + (i+1) + "☹");
+                    return true;
+                }
+            }
+            else{
+                countComputer = 0;
+                countPlayer = 0;
+                break;
+            }
+        }
+        countComputer = 0;
+        countPlayer = 0;
+    }
+    return false;
+}
+
+function diagonalCheckRight(){
+    var countPlayer = 0;
+    var countComputer = 0;
+    for(var i=5; i>=3; --i){
+        for(var j=0; j<=3; ++j){
+            var x = i;
+            var y = j;
+            if(board[x][y] == "B"){
+                ++countPlayer;
+                countComputer = 0;
+                while(board[x][y] == board[x-1][y+1]){
+                    ++countPlayer;
+                    if(countPlayer == 4){
+                        alert("The Player wins Diagonally right ☺ !");
+                        return true;
+                    }
+                    --x;
+                    ++y;
+                }
+                x = i;
+                y = j;
+            }
+            else if(board[x][y] == "G"){
+                ++countComputer;
+                countPlayer = 0;
+                while(board[x][y] == board[x-1][y+1]){
+                    ++countComputer;
+                    if(countComputer == 4){
+                        alert("The Computer wins Dig right! ☹");
+                        return true;
+                    }
+                    --x;
+                    ++y;
+                }
+                x = i;
+                y = j;					
+            }
+            countComputer = 0;
+            countPlayer = 0;			
+        }		
+        countComputer = 0;
+        countPlayer = 0;
+    }
+    return false;
+}
+
+function diagonalCheckLeft(){
+    var countPlayer = 0;
+    var countComputer = 0;
+    for(var i=5; i>=2; --i){
+        for(var j=3; j<=6; ++j){
+            var x = i;
+            var y = j;
+            if(board[x][y] == "B"){
+                ++countPlayer;
+                countComputer = 0;
+                while(board[x][y] == board[x-1][y-1]){
+                    ++countPlayer;
+                    if(countPlayer == 4){
+                        alert("The Player wins Diagonally left ☺!");
+                        return true;
+                    }
+                    --x;
+                    --y;
+                }
+                x = i;
+                y = j;
+            }
+            else if(board[x][y] == "G"){
+                ++countComputer;
+                countPlayer = 0;
+                while(board[x][y] == board[x-1][y-1]){
+                    ++countComputer;
+                    if(countComputer == 4){
+                        alert("The Computer wins Diagonally left! ☹");
+                        return true;
+                    }
+                    --x;
+                    --y;
+                }
+                x = i;
+                y = j;					
+            }
+            countComputer = 0;
+            countPlayer = 0;			
+        }		
+        countComputer = 0;
+        countPlayer = 0;
+    }
+    return false;
+}
+
+var win = false;
+var newGame = "yes";
+while(newGame=="yes" || newGame =="YES"){
+    grid(board);
+    while(!win && !gridIsFull()){
+        humanTurn();
+        win = rowCheck();
+        if(!win)
+            win = columnCheck();
+        if(!win)
+            win = diagonalCheckRight();
+        if(!win)
+            win = diagonalCheckLeft();
+        if(!win){
+            computerTurn();
+            win = rowCheck();
+        }
+        if(!win)
+            win = columnCheck();
+        if(!win)
+            win = diagonalCheckRight();
+        if(!win)
+            win = diagonalCheckLeft();
+    }
+    do{
+        newGame = prompt("Do you wanna play again? yes/YES ✔ or no/NO ✘");
+    }while(newGame != "no" && newGame != "yes" && newGame != "NO" && newGame != "YES");
+
+    win = false;
+    var board = [["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""]];
+}

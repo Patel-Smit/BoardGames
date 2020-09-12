@@ -1,0 +1,76 @@
+/*
+You can run this code at : http://codeboot.org
+*/
+
+var ticTacToeBoard = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']];
+var star = "X";
+var circle = "O";
+var d = 0;
+/////////////////////////////////////////////////////////
+function ticTacstar(){
+    var x = parseInt(prompt("Please enter i coordinates"));
+    var y = parseInt(prompt("Please enter j coordinates"));
+    for(var i=0; i<ticTacToeBoard.length; i++){
+        for(var j=0; j<ticTacToeBoard[i].length; j++){
+            ticTacToeBoard[x][y] = star;
+        }   
+    }
+    print(ticTacToeBoard[0]);
+    print(ticTacToeBoard[1]);
+    print(ticTacToeBoard[2]);
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    x = null;
+    y = null;
+    if ((ticTacToeBoard[0][0] == star && ticTacToeBoard[0][1] == star && ticTacToeBoard[0][2] == star)||(ticTacToeBoard[1][0] == star && ticTacToeBoard[1][1] == star && ticTacToeBoard[1][2] == star)||(ticTacToeBoard[2][0] == star && ticTacToeBoard[2][1] == star && ticTacToeBoard[2][2] == star)||(ticTacToeBoard[0][0] == star && ticTacToeBoard[1][0] == star && ticTacToeBoard[2][0] == star)||(ticTacToeBoard[0][1] == star && ticTacToeBoard[1][1] == star && ticTacToeBoard[2][1] == star)||(ticTacToeBoard[0][2] == star && ticTacToeBoard[1][2] == star && ticTacToeBoard[2][2] == star)||(ticTacToeBoard[0][0] == star && ticTacToeBoard[1][1] == star && ticTacToeBoard[2][2] == star)||(ticTacToeBoard[2][0] == star && ticTacToeBoard[2][1] == star && ticTacToeBoard[2][2] == star))
+    { 
+
+        print("Star won!!!");
+        var d = 1;
+    }
+    else if ((ticTacToeBoard[0][0] == circle && ticTacToeBoard[0][1] == circle && ticTacToeBoard[0][2] == circle)||(ticTacToeBoard[1][0] == circle && ticTacToeBoard[1][1] == circle && ticTacToeBoard[1][2] == circle)||(ticTacToeBoard[2][0] == circle && ticTacToeBoard[2][1] == circle && ticTacToeBoard[2][2] == circle)||(ticTacToeBoard[0][0] == circle && ticTacToeBoard[1][0] == circle && ticTacToeBoard[2][0] == circle)||(ticTacToeBoard[0][1] == circle && ticTacToeBoard[1][1] == circle && ticTacToeBoard[2][1] == circle)||(ticTacToeBoard[0][2] == circle && ticTacToeBoard[1][2] == circle && ticTacToeBoard[2][2] == circle)||(ticTacToeBoard[0][0] == circle && ticTacToeBoard[1][1] == circle && ticTacToeBoard[2][2] == circle)||(ticTacToeBoard[2][0] == circle && ticTacToeBoard[2][1] == circle && ticTacToeBoard[2][2] == circle))
+    {
+        print("Circle won!!!"); 
+        var d = 1;
+
+    }
+    else{
+        print("Continue !!!!!");
+        var d = 0;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+function ticTaccircle(){
+    var x = parseInt(prompt("Please enter i coordinates"));
+    var y = parseInt(prompt("Please enter j coordinates"));
+    for(var i=0; i<ticTacToeBoard.length; i++){
+        for(var j=0; j<ticTacToeBoard[i].length; j++){
+            ticTacToeBoard[x][y] = circle;
+        }   
+    }
+    print(ticTacToeBoard[0]);
+    print(ticTacToeBoard[1]);
+    print(ticTacToeBoard[2]);
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    x = null;
+    y = null;
+    if ((ticTacToeBoard[0][0] == star && ticTacToeBoard[0][1] == star && ticTacToeBoard[0][2] == star)||(ticTacToeBoard[1][0] == star && ticTacToeBoard[1][1] == star && ticTacToeBoard[1][2] == star)||(ticTacToeBoard[2][0] == star && ticTacToeBoard[2][1] == star && ticTacToeBoard[2][2] == star)||(ticTacToeBoard[0][0] == star && ticTacToeBoard[1][0] == star && ticTacToeBoard[2][0] == star)||(ticTacToeBoard[0][1] == star && ticTacToeBoard[1][1] == star && ticTacToeBoard[2][1] == star)||(ticTacToeBoard[0][2] == star && ticTacToeBoard[1][2] == star && ticTacToeBoard[2][2] == star)||(ticTacToeBoard[0][0] == star && ticTacToeBoard[1][1] == star && ticTacToeBoard[2][2] == star)||(ticTacToeBoard[2][0] == star && ticTacToeBoard[2][1] == star && ticTacToeBoard[2][2] == star))
+    { 
+
+        print("Star won!!!");
+        var d = 1;
+    }
+    else if ((ticTacToeBoard[0][0] == circle && ticTacToeBoard[0][1] == circle && ticTacToeBoard[0][2] == circle)||(ticTacToeBoard[1][0] == circle && ticTacToeBoard[1][1] == circle && ticTacToeBoard[1][2] == circle)||(ticTacToeBoard[2][0] == circle && ticTacToeBoard[2][1] == circle && ticTacToeBoard[2][2] == circle)||(ticTacToeBoard[0][0] == circle && ticTacToeBoard[1][0] == circle && ticTacToeBoard[2][0] == circle)||(ticTacToeBoard[0][1] == circle && ticTacToeBoard[1][1] == circle && ticTacToeBoard[2][1] == circle)||(ticTacToeBoard[0][2] == circle && ticTacToeBoard[1][2] == circle && ticTacToeBoard[2][2] == circle)||(ticTacToeBoard[0][0] == circle && ticTacToeBoard[1][1] == circle && ticTacToeBoard[2][2] == circle)||(ticTacToeBoard[2][0] == circle && ticTacToeBoard[2][1] == circle && ticTacToeBoard[2][2] == circle))
+    {
+        print("Circle won!!!");  
+        var d = 1;
+    }
+    else{
+        print("Continue !!!!!");
+        var d = 0;
+    }
+}
+do{
+    ticTacstar();
+    ticTaccircle();
+}
+while(d!=1);
